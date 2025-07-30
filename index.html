@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Untuk Pacarku Tersayang</title>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <link rel="stylesheet" href="src/output.css" />
+    <style>
+      /* Animasi teks */
+      .fade-in-up {
+        animation: fadeInUp 1.2s ease-out both;
+      }
+      @keyframes fadeInUp {
+        0% {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Animasi background hati jatuh */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("https://cdn-icons-png.flaticon.com/512/833/833472.png");
+        background-size: 30px;
+        opacity: 0.05;
+        animation: fall 10s linear infinite;
+        z-index: -1;
+      }
+      @keyframes fall {
+        0% {
+          background-position: 0 -100px;
+        }
+        100% {
+          background-position: 0 1000px;
+        }
+      }
+
+      /* Animasi foto */
+      .zoom-in {
+        animation: zoomIn 0.6s ease;
+      }
+      @keyframes zoomIn {
+        0% {
+          transform: scale(0.85);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-pink-100 font-sans overflow-x-hidden">
+    <!-- Musik -->
+    <audio id="bgMusic" autoplay loop>
+      <source src="img/music.mp3" type="audio/mpeg" />
+    </audio>
+
+    <!-- Halaman 1 -->
+    <section
+      id="page1"
+      class="min-h-screen flex flex-col items-center justify-center text-center px-4"
+    >
+      <h1 class="text-4xl md:text-6xl font-bold text-pink-600 mb-4 fade-in-up">
+        <span class="animate-none">
+          Selamat Hari Girlfriend Sedunia, Sayangg 💖
+        </span>
+      </h1>
+      <p
+        class="text-pink-700 text-lg md:text-xl mb-8 fade-in-up"
+        style="animation-delay: 0.4s"
+      >
+        Hari ini cuma satu tujuannya: bikin kamu tersenyum bahagia karena kamu
+        istimewa 🥰
+      </p>
+      <div class="fade-in-up">
+        <p
+          class="animate-pulse text-pink-600 text-sm md:text-xl mb-8"
+          style="animation-delay: 0.4s"
+        >
+          Klik layar dimana saja untuk hidupin musik biar lebih menarik😊 <br />
+          Ardhito Pramono ft. Aurélie Moeremans - I Just Couldn’t Save You
+          Tonight (Story of Kale - OMPS).mp3🎶
+        </p>
+      </div>
+      <button
+        onclick="nextPage(2)"
+        class="bg-pink-500 hover:bg-pink-600 hover:shadow-xl hover:shadow-pink-300 text-white font-semibold py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105 fade-in-up"
+        style="animation-delay: 0.6s"
+      >
+        Selanjutnya
+      </button>
+    </section>
+
+    <!-- Halaman 2: Slideshow Galeri -->
+    <section
+      id="page2"
+      class="min-h-screen hidden flex flex-col items-center justify-center text-center px-4"
+    >
+      <h2 class="text-3xl font-bold text-pink-600 mb-6 fade-in-up">
+        Kenangan Manis Kita 📸
+      </h2>
+      <p
+        class="text-pink-700 text-sm md:text-xl mb-8 fade-in-up"
+        style="animation-delay: 0.4s"
+      >
+        Aku tahu kita lagi LDR, tapi boleh luangin sedikit waktu buat lihat
+        foto-foto kita? Aku cuma nggak mau kenangan ini hilang gitu aja cuma
+        karena jarak.
+      </p>
+
+      <!-- Slideshow Container -->
+      <div
+        class="relative w-full max-w-md md:max-w-xl lg:max-w-2xl overflow-hidden rounded-xl shadow-lg"
+      >
+        <!-- Slides -->
+        <div id="slides" class="relative w-full h-[500px] md:h-[500px]">
+          <!-- Ganti src dengan link foto kalian -->
+        </div>
+
+        <!-- Controls -->
+        <div
+          class="absolute top-1/2 w-full flex justify-between items-center px-4 transform -translate-y-1/2"
+        >
+          <button
+            onclick="prevSlide()"
+            class="bg-white bg-opacity-70 hover:bg-opacity-90 text-pink-500 font-bold py-1 px-3 rounded-full shadow"
+          >
+            ‹
+          </button>
+          <button
+            onclick="nextSlide()"
+            class="bg-white bg-opacity-70 hover:bg-opacity-90 text-pink-500 font-bold py-1 px-3 rounded-full shadow"
+          >
+            ›
+          </button>
+        </div>
+      </div>
+
+      <!-- Tombol Selanjutnya -->
+      <button
+        onclick="nextPage(3)"
+        class="mt-8 bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105"
+      >
+        Selanjutnya
+      </button>
+    </section>
+
+    <!-- Halaman 3: Surat -->
+    <section
+      id="page3"
+      class="min-h-screen hidden flex flex-col items-center justify-center text-center px-4"
+    >
+      <h2 class="text-2xl font-bold text-pink-600 mb-4">
+        Ada Surat Untukmu 💌
+      </h2>
+      <img
+        src="img/gambar-surat.png"
+        alt="Surat"
+        class="w-40 cursor-pointer hover:scale-110 transition"
+        onclick="showLetter()"
+      />
+
+      <div
+        id="letterContent"
+        class="hidden mt-6 max-w-lg bg-white shadow-lg p-6 rounded-lg text-left border border-pink-300"
+      >
+        <h3 class="text-xl font-bold text-pink-500 mb-2">
+          Untuk kamu, floraa 💗
+        </h3>
+        <p class="text-gray-700 leading-relaxed">
+          Floo, di hari spesial ini aku ingin kau tahu bahwa kau adalah hadiah
+          terindah dalam hidupku. Terima kasih sudah hadir, tertawa bersamaku,
+          dan selalu menjadi alasan aku semangat setiap hari.Aku mencintaimu
+          bukan hanya hari ini, tapi setiap detik dalam hidupku. 💖
+          <br /><br />
+          Selamat Hari Girlfriend Sedunia, floraa! 🌹
+        </p>
+      </div>
+    </section>
+
+    <script>
+      function nextPage(pageNumber) {
+        document
+          .querySelectorAll("section")
+          .forEach((sec) => sec.classList.add("hidden"));
+        document.getElementById("page" + pageNumber).classList.remove("hidden");
+      }
+
+      function showLetter() {
+        document.getElementById("letterContent").classList.remove("hidden");
+      }
+
+      // Autoplay untuk browser yang butuh interaksi
+      window.addEventListener(
+        "click",
+        () => {
+          const bgMusic = document.getElementById("bgMusic");
+          if (bgMusic.paused) {
+            bgMusic.play().catch(() => {});
+          }
+        },
+        { once: true }
+      );
+
+      // mengambil gambar pakai looping
+      const slidesContainer = document.getElementById("slides");
+
+      for (let i = 1; i <= 48; i++) {
+        const img = document.createElement("img");
+        img.src = `img/gambar${i}.jpg`;
+        img.className =
+          "absolute inset-0 w-full h-full object-cover rounded-xl opacity-0 transition-opacity duration-700";
+        slidesContainer.appendChild(img);
+      }
+
+      // Logic slideshow seperti sebelumnya
+      let currentSlide = 0;
+      const slides = document.querySelectorAll("#slides img");
+      let slideInterval;
+
+      function showSlide(index) {
+        slides.forEach((slide, i) => {
+          slide.style.opacity = i === index ? "1" : "0";
+        });
+      }
+
+      function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+      }
+
+      function prevSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+      }
+
+      function startAutoSlide() {
+        slideInterval = setInterval(nextSlide, 2500);
+      }
+
+      function stopAutoSlide() {
+        clearInterval(slideInterval);
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        showSlide(currentSlide);
+        startAutoSlide();
+      });
+    </script>
+  </body>
+</html>
